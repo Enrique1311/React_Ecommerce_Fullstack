@@ -1,0 +1,19 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+app {
+	margin: auto;
+}
+
+:root {
+	--primary: rgb(30, 30, 31);
+	--secondary: rgb(3, 172, 181);
+	--light: rgb(255, 255, 255);
+	--dark-grey: rgb(88, 88, 88);
+	--light-grey: rgb(141, 141, 172);
+	--my-red: rgb(255, 0, 0);
+	scroll-behavior: smooth;
+}
