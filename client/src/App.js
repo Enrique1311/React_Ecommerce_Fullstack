@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Checkout from './scenes/checkout/Checkout';
 import Confirmation from './scenes/checkout/Confirmation';
+import CartMenu from './scenes/global/CartMenu';
 import NavBar from './scenes/global/NavBar';
 import Home from './scenes/home/Home';
 import ItemDetails from './scenes/itemDetails/ItemDetails';
@@ -40,6 +41,7 @@ function App() {
 						element={<Confirmation />}
 					/>
 				</Routes>
+				<CartMenu />
 			</BrowserRouter>
 		</div>
 	);

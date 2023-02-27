@@ -1,8 +1,7 @@
 import React from 'react';
-import './NavBar.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Badge, Box, IconButton } from '@mui/material';
-import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
@@ -16,33 +15,56 @@ const NavBar = () => {
 	const cart = useSelector((state) => state.cart.cart);
 
 	return (
-		<Box className='navbar-box'>
-			<Box className='navbar-box-content'>
+		<Box
+			display='flex'
+			alignItems='center'
+			width='100%'
+			height='60px'
+			backgroundColor={shades.primary[500]}
+			position='fixed'
+			zIndex='1'
+			padding='0 15px'
+		>
+			<Box
+				display='flex'
+				justifyContent='space-between'
+				alignItems='center'
+				width='100%'
+				margin='auto'
+			>
 				<Box
-					className='navbar-name'
 					onClick={() => navigate('/')}
+					sx={{ '&:hover': { cursor: 'pointer' } }}
+					color={shades.secondary[100]}
+					fontSize='medium'
 				>
 					TECH.ecom
 				</Box>
-				<Box className='navbar-icons-container'>
-					<IconButton>
-						<SearchIcon className='navbar-icon' />
+				<Box
+					display='flex'
+					justifyContent='space-between'
+					columnGap='10px'
+					zIndex='5'
+				>
+					<IconButton sx={{ color: 'white' }}>
+						<SearchIcon />
 					</IconButton>
-					<IconButton>
+					<IconButton sx={{ color: 'white' }}>
 						<AccountCircleIcon className='navbar-icon' />
 					</IconButton>
-
-					<IconButton onClick={() => dispatch(setIsCartOpen({}))}>
+					<IconButton
+						onClick={() => dispatch(setIsCartOpen({}))}
+						sx={{ color: 'white' }}
+					>
 						<Badge
-							badgeContent={'4'}
-							color='secondary'
-							invisible={false}
+							badgeContent={cart.length}
+							color={'red'}
+							invisible={cart.length === 0}
 						>
-							<LocalMallRoundedIcon className='navbar-icon' />{' '}
+							<ShoppingCartIcon className='navbar-icon' />{' '}
 						</Badge>
 					</IconButton>
-
-					<IconButton>
+					<IconButton sx={{ color: 'white' }}>
 						<MenuIcon className='navbar-icon' />
 					</IconButton>
 				</Box>
