@@ -7,12 +7,13 @@ import { Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { setItems } from '../../state';
+import { shades } from '../../theme';
 
 const ShoppingList = () => {
 	const dispatch = useDispatch();
 	const [value, setValue] = useState('all');
 	const items = useSelector((state) => state.cart.items);
-	const breakPoint = useMediaQuery('(min-width:600px)');
+	const breakPoint = useMediaQuery('(min-width:620px)');
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -20,7 +21,7 @@ const ShoppingList = () => {
 
 	async function getItems() {
 		const items = await fetch(
-			'http://localhost:2000/api/items?populate=image',
+			'http://localhost:3000/api/items?populate=image',
 			{ method: 'GET' }
 		);
 		const itemsJson = await items.json();
@@ -29,7 +30,7 @@ const ShoppingList = () => {
 
 	useEffect(() => {
 		getItems();
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	}, []);
 
 	const topRatedItems = items.filter(
 		(item) => item.attributes.category === 'topRated'
@@ -42,9 +43,9 @@ const ShoppingList = () => {
 	);
 
 	return (
-		<Box backgroungColor='primary'>
+		<Box>
 			<Box
-				width='80%'
+				width='90%'
 				margin='80px auto'
 			>
 				<Typography
@@ -59,9 +60,11 @@ const ShoppingList = () => {
 					value={value}
 					onChange={handleChange}
 					centered
-					TabIndicatorProps={{ sx: { display: breakPoint ? 'block' : 'none' } }}
+					TabIndicatorProps={{
+						sx: { display: breakPoint ? 'block' : 'none' },
+					}}
 					sx={{
-						m: '25px',
+						m: '20px',
 						'& .MuiTabs-flexContainer': {
 							flexWrap: 'wrap',
 						},

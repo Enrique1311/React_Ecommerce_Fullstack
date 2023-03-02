@@ -22,7 +22,7 @@ const NavBar = () => {
 			height='60px'
 			backgroundColor={shades.primary[500]}
 			position='fixed'
-			zIndex='1'
+			zIndex='10'
 			padding='0 15px'
 		>
 			<Box

@@ -34,7 +34,7 @@ const MainCarousel = () => {
 						left: '0',
 						color: 'white',
 						padding: '5px',
-						zIndex: '10',
+						zIndex: '5',
 					}}
 				>
 					<ArrowBackIcon sx={{ fontSize: 40 }} />
@@ -49,7 +49,7 @@ const MainCarousel = () => {
 						right: '0',
 						color: 'white',
 						padding: '5px',
-						zIndex: '10',
+						zIndex: '5',
 					}}
 				>
 					<ArrowForwardIcon sx={{ fontSize: 40 }} />
