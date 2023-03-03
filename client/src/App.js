@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Checkout from './scenes/checkout/Checkout';
-import Confirmation from './scenes/checkout/Confirmation';
-import CartMenu from './scenes/global/CartMenu';
-import NavBar from './scenes/global/NavBar';
-import Home from './scenes/home/Home';
-import ItemDetails from './scenes/itemDetails/ItemDetails';
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import Checkout from "./scenes/checkout/Checkout";
+import Confirmation from "./scenes/checkout/Confirmation";
+import CartMenu from "./scenes/global/CartMenu";
+import NavBar from "./scenes/global/NavBar";
+import Home from "./scenes/home/Home";
+import ItemDetails from "./scenes/itemDetails/ItemDetails";
 
 const ScrollToTop = () => {
 	const { pathname } = useLocation();
@@ -19,25 +19,25 @@ const ScrollToTop = () => {
 
 function App() {
 	return (
-		<div className='app'>
+		<div className="app">
 			<BrowserRouter>
 				<NavBar />
 				<ScrollToTop />
 				<Routes>
 					<Route
-						path='/'
+						path="/"
 						element={<Home />}
 					/>
 					<Route
-						path='item/:itemId'
+						path="item/:itemId"
 						element={<ItemDetails />}
 					/>
 					<Route
-						path='checkout'
+						path="checkout"
 						element={<Checkout />}
 					/>
 					<Route
-						path='checkout/success'
+						path="checkout/success"
 						element={<Confirmation />}
 					/>
 				</Routes>

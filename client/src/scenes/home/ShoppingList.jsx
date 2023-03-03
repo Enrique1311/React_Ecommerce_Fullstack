@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import Item from '../../components/Item';
-import { Typography } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { useDispatch, useSelector } from 'react-redux';
-import { setItems } from '../../state';
-import { shades } from '../../theme';
+import React, { useEffect, useState } from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Item from "../../components/Item";
+import { Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useDispatch, useSelector } from "react-redux";
+import { setItems } from "../../state";
 
 const ShoppingList = () => {
 	const dispatch = useDispatch();
-	const [value, setValue] = useState('all');
+	const [value, setValue] = useState("all");
 	const items = useSelector((state) => state.cart.items);
-	const breakPoint = useMediaQuery('(min-width:620px)');
+	const breakPoint = useMediaQuery("(min-width:620px)");
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -21,8 +20,8 @@ const ShoppingList = () => {
 
 	async function getItems() {
 		const items = await fetch(
-			'http://localhost:3000/api/items?populate=image',
-			{ method: 'GET' }
+			"http://localhost:1337/api/items?populate=image",
+			{ method: "GET" }
 		);
 		const itemsJson = await items.json();
 		dispatch(setItems(itemsJson.data));
@@ -31,92 +30,92 @@ const ShoppingList = () => {
 	useEffect(() => {
 		getItems();
 	}, []);
-
+	console.log(items);
 	const topRatedItems = items.filter(
-		(item) => item.attributes.category === 'topRated'
+		(item) => item.attributes.category === "topRated"
 	);
 	const newArrivalsItems = items.filter(
-		(item) => item.attributes.category === 'newArrivals'
+		(item) => item.attributes.category === "newArrivals"
 	);
 	const bestSellersItems = items.filter(
-		(item) => item.attributes.category === 'bestSellers'
+		(item) => item.attributes.category === "bestSellers"
 	);
 
 	return (
 		<Box>
 			<Box
-				width='90%'
-				margin='80px auto'
+				width="90%"
+				margin="80px auto"
 			>
 				<Typography
-					variant='h3'
-					textAlign='center'
+					variant="h3"
+					textAlign="center"
 				>
 					Our Featured <b>Products</b>
 				</Typography>
 				<Tabs
-					textColor='primary'
-					indicatorColor='secondary'
+					textColor="primary"
+					indicatorColor="secondary"
 					value={value}
 					onChange={handleChange}
 					centered
 					TabIndicatorProps={{
-						sx: { display: breakPoint ? 'block' : 'none' },
+						sx: { display: breakPoint ? "block" : "none" },
 					}}
 					sx={{
-						m: '20px',
-						'& .MuiTabs-flexContainer': {
-							flexWrap: 'wrap',
+						m: "20px",
+						"& .MuiTabs-flexContainer": {
+							flexWrap: "wrap",
 						},
 					}}
 				>
 					<Tab
-						label='ALL'
-						value='all'
+						label="ALL"
+						value="all"
 					/>
 					<Tab
-						label='NEW ARRIVALS'
-						value='newArrivals'
+						label="NEW ARRIVALS"
+						value="newArrivals"
 					/>
 					<Tab
-						label='BEST SELLERS'
-						value='bestSellers'
+						label="BEST SELLERS"
+						value="bestSellers"
 					/>
 					<Tab
-						label='TOP RATED'
-						value='topRated'
+						label="TOP RATED"
+						value="topRated"
 					/>
 				</Tabs>
 				<Box
-					margin='0 auto'
-					display='grid'
-					gridTemplateColumns='repeat(auto-fill, 300px)'
-					justifyContent='space-around'
-					rowGap='20px'
-					columnGap='1.33%'
+					margin="0 auto"
+					display="grid"
+					gridTemplateColumns="repeat(auto-fill, 300px)"
+					justifyContent="space-around"
+					rowGap="20px"
+					columnGap="1.33%"
 				>
-					{value === 'all' &&
+					{value === "all" &&
 						items.map((item) => (
 							<Item
 								item={item}
 								key={`${item.name}-${item.id}`}
 							/>
 						))}
-					{value === 'newArrivals' &&
+					{value === "newArrivals" &&
 						newArrivalsItems.map((item) => (
 							<Item
 								item={item}
 								key={`${item.name}-${item.id}`}
 							/>
 						))}
-					{value === 'bestSellers' &&
+					{value === "bestSellers" &&
 						bestSellersItems.map((item) => (
 							<Item
 								item={item}
 								key={`${item.name}-${item.id}`}
 							/>
 						))}
-					{value === 'topRated' &&
+					{value === "topRated" &&
 						topRatedItems.map((item) => (
 							<Item
 								item={item}
